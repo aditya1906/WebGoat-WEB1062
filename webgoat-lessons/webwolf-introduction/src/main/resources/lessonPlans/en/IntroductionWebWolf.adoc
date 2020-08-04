@@ -38,3 +38,5 @@ Note: if you start WebGoat as standalone application you need to start WebWolf a
 
 This will start the application on port 9090, click webWolfLink:here[] to open WebWolf.
 First thing you need to do is register a new user within WebWolf.
+
+Modified by Aditya Shankar
