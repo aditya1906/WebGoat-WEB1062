@@ -61,11 +61,12 @@ public class SqlInjectionLesson5b extends AssignmentEndpoint {
     protected AttackResult injectableQuery(String userID) {
         try {
             Connection connection = DatabaseUtilities.getConnection(getWebSession());
-            String query = "SELECT * FROM user_data WHERE userid = " + userID;
+            final String query = "SELECT * FROM user_data WHERE userid = ?";
 
             try {
-                Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                        ResultSet.CONCUR_READ_ONLY);
+                PreparedStatement statement = connection.prepareStatement( query, ResultSet.TYPE_SCROLL_INSENSITIVE,
+                        ResultSet.CONCUR_READ_ONLY );
+                statement.setInt(1, Integer.parseInt(userID));
                 ResultSet results = statement.executeQuery(query);
 
                 if ((results != null) && (results.first() == true)) {
