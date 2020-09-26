@@ -54,8 +54,9 @@ public class VulnerableComponentsLesson extends AssignmentEndpoint {
 
 		
         XStream xstream = new XStream(new DomDriver());
+        XStream.setupDefaultSecurity(xstream);
+        xstream.allowTypes(new Class[]{Contact.class});
         xstream.setClassLoader(Contact.class.getClassLoader());
-
         xstream.processAnnotations(Contact.class);
 //        xstream.registerConverter(new ContactConverter());
 //        xstream.registerConverter(new CatchAllConverter(), XStream.PRIORITY_VERY_LOW);
@@ -92,9 +93,8 @@ public class VulnerableComponentsLesson extends AssignmentEndpoint {
                 return trackProgress(success().feedback("vulnerable-components.success").build());
         	}
             return trackProgress(failed().feedback("vulnerable-components.close").build());
-       }
-
- 
-
+       } catch (Exception e) {
+            return trackProgress(failed().feedback("vulnerable-components.close").build());
+        }
 	}
 }
