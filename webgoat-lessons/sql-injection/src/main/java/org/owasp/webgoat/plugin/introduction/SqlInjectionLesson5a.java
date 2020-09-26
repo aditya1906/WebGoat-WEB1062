@@ -64,8 +64,8 @@ public class SqlInjectionLesson5a extends AssignmentEndpoint {
             try {
 //                Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 //                        ResultSet.CONCUR_READ_ONLY);
-                PreparedStatement statement = connection.prepareStatement( query, ResultSet.TYPE_SCROLL_INSENSITIVE,
-                        ResultSet.CONCUR_READ_ONLY );
+                PreparedStatement statement = connection.prepareStatement( query,
+                        ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY );
                 statement.setString(1, accountName);
                 ResultSet results = statement.executeQuery( );
 
